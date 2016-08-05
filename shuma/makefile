@@ -1,17 +1,13 @@
-[PY] = ~/4115/stc/stcflash.py
-burn:
-	sudo python $(PY) shuma.bin
-compile: shuma.c
-	sdcc shuma.c
-	packihx shuma.ihx > shuma.hex
-	objcopy -I ihex -O binary shuma.hex shuma.bin
+ROOT=..
 
-60: 60.c
-	sdcc 60.c
-	packihx 60.ihx > 60.hex
-	objcopy -I ihex -O binary 60.hex 60.bin
+include $(ROOT)/make.defines
+PY = python ../stcflash.py
 
-time: time.c
-	sdcc time.c
-	packihx time.ihx > time.hex
-	objcopy -I ihex -O binary time.hex time.bin
+all: shuma.bin 60.bin timer.bin
+%.bin: %.c
+	$(SDCC)   $<  $(CFLAGS) $(LIBPATH)
+	packihx $*.ihx > $*.hex
+	objcopy -I ihex -O binary $*.hex  $*.bin
+
+clean:
+	rm -f $(TEMPFILES)

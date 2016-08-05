@@ -1,1 +1,0 @@
-/mnt/sda7/armlinux/ls

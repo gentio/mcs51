@@ -1,0 +1,8 @@
+
+
+SDCC=sdcc
+AR=sdcclib
+SDCCLIB=sdcc -c
+CFLAGS=-I$(ROOT)/include
+LIBPATH=-L$(ROOT)/lib
+TEMPFILES=*.asm *.bin *.rel *.ihx *.hex *.lnk *.lst *mem *rst *sym *cdb *map *lib
